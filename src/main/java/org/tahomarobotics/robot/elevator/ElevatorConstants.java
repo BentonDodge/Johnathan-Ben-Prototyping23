@@ -16,7 +16,10 @@ public class ElevatorConstants {
     public static final double ELEVATOR_MAX = 1.7; // Meters
     public static final double ELEVATOR_MAX_VELOCITY = 1; // Meters / sec
     public static final double ELEVATOR_MAX_ACCELERATION = 2; // Meters / sec^2
+//TODO
+    public static final double ELEVATOR_POSITION = 0;//.1764*MotorRotation;
 
+    public static double desiredPos = 0;
     // Feed Forward
     public static final double S_VOLTS = 0; // Static Gain
     public static final double COS_VOLTS = 0; // Gravity Gain

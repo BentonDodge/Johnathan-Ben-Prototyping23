@@ -8,6 +8,7 @@ package org.tahomarobotics.robot;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import org.tahomarobotics.robot.elevator.Elevator;
 
 
 /**
@@ -17,14 +18,14 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot {
-
+private Elevator elevator;
     /**
      * This method is run when the robot is first started up and should be used for any
      * initialization code.
      */
     @Override
     public void robotInit() {
-
+ elevator= Elevator.getInstance().instialize();
     }
 
 
@@ -59,7 +60,7 @@ public class Robot extends TimedRobot {
 
 
     /**
-     * This autonomous runs the autonomous command selected by your {@link OI} class.
+     * This autonomous runs the autonomous command selected by your OI class.
      */
     @Override
     public void autonomousInit() {

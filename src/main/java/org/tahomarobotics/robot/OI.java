@@ -18,19 +18,33 @@
  */
 package org.tahomarobotics.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class OI {
+import java.util.function.DoubleSupplier;
+
+public class OI {
     private static final Logger logger = LoggerFactory.getLogger(OI.class);
     private static final OI INSTANCE = new OI();
+
     private static final double ROTATIONAL_SENSITIVITY = 2;
     private static final double FORWARD_SENSITIVITY = 1.1;
     private static final double ELEVATOR_SENSITIVITY = 2.5;
     private static final double DEAD_ZONE = 0.09;
 
+    public final XboxController driverController = new XboxController(0);
 
+    //TODO configure the joystick/manipulate upSup
     private OI() {
+    }
+
+    public int controllerDpad() {
+        return driverController.getPOV();
+    }
+
+    public double joystickLeftY(){
+         return driverController.getLeftY();
 
     }
 
@@ -38,12 +52,12 @@ public final class OI {
         return INSTANCE;
     }
 
-    private static double deadband(double value) {
-        if (Math.abs(value) > OI.DEAD_ZONE) {
-            if (value > 0.0) {
-                return (value - OI.DEAD_ZONE) / (1.0 - OI.DEAD_ZONE);
+    private static double deadband(double upSup) {
+        if (Math.abs(upSup) > OI.DEAD_ZONE) {
+            if (upSup > 0.0) {
+                return (upSup - OI.DEAD_ZONE) / (1.0 - OI.DEAD_ZONE);
             } else {
-                return (value + OI.DEAD_ZONE) / (1.0 - OI.DEAD_ZONE);
+                return (upSup + OI.DEAD_ZONE) / (1.0 - OI.DEAD_ZONE);
             }
         } else {
             return 0.0;
